@@ -1,5 +1,5 @@
 import streamlit as st
-
+from utils.prompt_constructor import construct_promt_and_invoke
 def chat_page():
   st.title("CampusWise Chat")
   
@@ -24,7 +24,7 @@ def chat_page():
     with st.chat_message("assistant"):
       with st.spinner("Thinking..."):
         if "llm" in st.session_state:
-          response = st.session_state.llm.invoke(prompt)
+          response = construct_promt_and_invoke(st.session_state.llm, prompt)
           st.markdown(response)
           # Add assistant response to chat history
           st.session_state.messages.append({"role": "assistant", "content": response})

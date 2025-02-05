@@ -31,10 +31,10 @@ def perform_rag_retrieval(user_input):
   )
   results = retriever.invoke(user_input)
   return results
-def construct_promt(LLM, user_input):
+def construct_promt_and_invoke(LLM, user_input):
   chain = prompt_template | LLM 
   rag_retrieval_results = perform_rag_retrieval(user_input)
   response = chain.invoke({"user_input" : user_input, 
                            "retrieved_results" : rag_retrieval_results,})
   return response
-    
+  
