@@ -1,7 +1,8 @@
 from langchain_core.prompts import ChatPromptTemplate
 from utils.vector_store import get_vectorstore
-from langchain_community.output_parsers import StringOutputParser
+from langchain_core.output_parsers.string import StrOutputParser
 import time
+import re
 system_message = """
 Du bist ein Experte für Studienberatung und deine Aufgabe ist es, komplexe Fragen zu beantworten.
 Gehe davon aus, dass sich alle Fragen auf das Studium beziehen.
@@ -45,10 +46,19 @@ def perform_rag_retrieval(user_input):
   )
   results = retriever.invoke(user_input)
   return results
+
+def process_response(initial_response):
+  pattern = r'</think>(.*)'
+  match = re.search(pattern, initial_response, re.DOTALL)
+  if match:
+    return match.group(1).strip()
+  return initial_response
+  
 def construct_promt_and_invoke(LLM, user_input):
-  chain = prompt_template | LLM | StringOutputParser()
+  chain = prompt_template | LLM | StrOutputParser()
   rag_retrieval_results = perform_rag_retrieval(user_input)
-  response = chain.invoke({"user_input" : user_input, 
+  initial_response = chain.invoke({"user_input" : user_input, 
                            "retrieved_results" : rag_retrieval_results,})
+  response = process_response(initial_response)
   return response
   
