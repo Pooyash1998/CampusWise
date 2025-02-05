@@ -1,0 +1,13 @@
+{
+  "study_programs": {
+      "Informatik": {
+      "Bachelor": ["2018", "2022"],
+      "Master": ["2020", "2023"],
+      "Promotion": ["2021"]
+    },
+    "Betriebswirtschaftslehre": {
+      "Bachelor": ["2019", "2021"],
+      "Master": ["2020"]
+    }
+  }
+}
