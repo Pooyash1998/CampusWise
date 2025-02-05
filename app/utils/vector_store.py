@@ -1,10 +1,10 @@
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 import os
 
-CHROMA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "/docs/chroma/"))
+CHROMA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "docs/chroma/"))
 if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",
@@ -13,7 +13,7 @@ embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-Mi
 
 def load_and_split():
   # Load documents
-  loader = PyPDFDirectoryLoader("docs/")
+  loader = PyPDFDirectoryLoader("docs")
   documents = loader.load()
   
   text_splitter = RecursiveCharacterTextSplitter(

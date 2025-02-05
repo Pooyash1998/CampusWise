@@ -1,5 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from utils.vector_store import get_vectorstore
+import time
 system_message = """
 Du bist ein Experte für Studienberatung und deine Aufgabe ist es, komplexe Fragen zu beantworten.
 Gehe davon aus, dass sich alle Fragen auf das Studium beziehen.
@@ -25,7 +26,19 @@ prompt_template = ChatPromptTemplate.from_messages([
     ("assistant", "Response: ")
 ])
 def perform_rag_retrieval(user_input):
-  vectorstore = get_vectorstore()
+  try:
+    print("Initializing vector store...")
+    vectorstore = get_vectorstore()
+    if not vectorstore:
+      print("Vector store is being created for the first time. This may take a few minutes...")
+      while not vectorstore:
+        print(".", end="", flush=True)
+        time.sleep(1)
+        vectorstore = get_vectorstore()
+      print("\nVector store initialization complete!")
+  except Exception as e:
+    print(f"Error initializing vector store: {str(e)}")
+    raise
   retriever = vectorstore.as_retriever(
     search_kwargs={'k': 5}
   )
