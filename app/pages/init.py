@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from pathlib import Path
 from time import sleep
-from llm import get_llm
+from app.utils.llm import get_llm
 
 # Initialize session states
 if "messages" not in st.session_state:
