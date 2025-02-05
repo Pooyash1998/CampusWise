@@ -1,5 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from utils.vector_store import get_vectorstore
+from langchain_community.output_parsers import StringOutputParser
 import time
 system_message = """
 Du bist ein Experte für Studienberatung und deine Aufgabe ist es, komplexe Fragen zu beantworten.
@@ -45,7 +46,7 @@ def perform_rag_retrieval(user_input):
   results = retriever.invoke(user_input)
   return results
 def construct_promt_and_invoke(LLM, user_input):
-  chain = prompt_template | LLM 
+  chain = prompt_template | LLM | StringOutputParser()
   rag_retrieval_results = perform_rag_retrieval(user_input)
   response = chain.invoke({"user_input" : user_input, 
                            "retrieved_results" : rag_retrieval_results,})
