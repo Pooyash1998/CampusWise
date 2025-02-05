@@ -1,5 +1,6 @@
 import streamlit as st
 from utils.prompt_constructor import construct_promt_and_invoke
+
 def chat_page():
   st.title("CampusWise Chat")
   

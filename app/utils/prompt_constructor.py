@@ -1,5 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
-from vector_store import get_vectorstore
+from utils.vector_store import get_vectorstore
 system_message = """
 Du bist ein Experte für Studienberatung und deine Aufgabe ist es, komplexe Fragen zu beantworten.
 Gehe davon aus, dass sich alle Fragen auf das Studium beziehen.
