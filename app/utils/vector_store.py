@@ -1,8 +1,9 @@
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 import os
+import streamlit as st
 
 CHROMA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "docs/chroma/"))
 if not os.path.exists(CHROMA_PATH):
@@ -36,6 +37,7 @@ def save_to_chroma(chunks):
 def get_vectorstore():
     if os.path.exists(os.path.join(CHROMA_PATH, 'chroma.sqlite3')):
         print("Chroma DB with all-MiniLM-L6-v2 already Exists")
+        st.markdown("Chroma DB with all-MiniLM-L6-v2 already Exists")
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
         chunks = load_and_split()
