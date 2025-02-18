@@ -10,8 +10,9 @@ def main():
   if not st.session_state.logged_in:
     st.title("Welcome to CampusWise")
     pin = st.text_input("Enter PIN", type="password")
-    if pin == os.environ.get("MASTER_PASS"):
+    if pin == st.secrets["MASTER_PASS"]:
       st.session_state.logged_in = True
+      os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"]
       st.switch_page("pages/init.py")
     elif pin:
       st.error("Incorrect PIN")
