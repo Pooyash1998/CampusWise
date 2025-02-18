@@ -3,6 +3,9 @@ import json
 from pathlib import Path
 from time import sleep
 from utils.llm import get_llm
+from utils.auth import check_authentication
+
+check_authentication()
 
 # Initialize session states
 if "messages" not in st.session_state:

@@ -1,6 +1,9 @@
 import streamlit as st
 from utils.prompt_constructor import construct_promt_and_invoke
 from utils.vector_store import get_vectorstore
+from utils.auth import check_authentication
+
+check_authentication()
 
 def chat_page():
   st.title("CampusWise Chat")
