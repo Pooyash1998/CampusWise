@@ -37,15 +37,15 @@ def get_filename_from_headers(response, fallback_filename):
         if match:
             filename = match.group(1).strip().strip('"').strip("'")
             return filename
-    return fallback_filename
+    return f"{fallback_filename}.pdf"
 
-def download_pdf_with_requests(pdf_url, cookies,filenum):
+def download_pdf_with_requests(pdf_url, cookies, id):
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}  # Mimic a real browser
+        headers = {"User-Agent": "Mozilla/5.0"}
         response = requests.get(pdf_url, cookies=cookies, headers=headers, stream=True)
         response.raise_for_status()
-        filename = get_filename_from_headers(response, filenum)
-        pdf_path = os.path.join(download_dir, filename)
+        filename = get_filename_from_headers(response, id)
+        pdf_path = os.path.join(download_dir, f"{id}_{filename}")
         with open(pdf_path, "wb") as pdf_file:
             for chunk in response.iter_content(1024):
                 pdf_file.write(chunk)
@@ -94,15 +94,14 @@ def scrape_documents():
 
 def download_pdfs(documents):
   driver = setup_driver()
-  for doc in documents[1:]:
+  for doc in documents[0:]:
     pdf_url = doc[2]
     if pdf_url:
       print(f"Downloading: {pdf_url}")
       driver.get(pdf_url)
       time.sleep(2)
       cookies = get_cookies(driver)
-      filenum = f"{doc[0]}.pdf"
-      download_pdf_with_requests(pdf_url, cookies, filenum)
+      download_pdf_with_requests(pdf_url, cookies, doc[0])
     else:
       print(f"No PDF URL found for: {doc[0]}")
   
@@ -185,10 +184,10 @@ if __name__ == "__main__":
   output_csv = "resources/rwth_with_metadata.csv"
   documents = scrape_documents()
   download_pdfs(documents)
-  from dotenv import load_dotenv
-  load_dotenv()
-  api_key = os.environ.get("OPENAI_API_KEY")
-  add_metadata_to_csv(input_csv, output_csv, api_key)
+  #from dotenv import load_dotenv
+  #load_dotenv()
+  #api_key = os.environ.get("OPENAI_API_KEY")
+  #add_metadata_to_csv(input_csv, output_csv, api_key)
 
 
 
