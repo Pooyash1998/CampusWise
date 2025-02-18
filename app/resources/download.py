@@ -185,6 +185,8 @@ if __name__ == "__main__":
   output_csv = "resources/rwth_with_metadata.csv"
   documents = scrape_documents()
   download_pdfs(documents)
+  from dotenv import load_dotenv
+  load_dotenv()
   api_key = os.environ.get("OPENAI_API_KEY")
   add_metadata_to_csv(input_csv, output_csv, api_key)
 
