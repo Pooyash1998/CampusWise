@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 
-download_dir = "docs/rwth_pdfs"
+download_dir = "resources/docs/rwth_pdfs"
 def setup_driver():
   options = Options()
   options.add_argument("--headless")
@@ -83,7 +83,7 @@ def scrape_documents():
 
   driver.quit()
 
-  CSV_FILE = "resources/rwth_pdfs.csv"
+  CSV_FILE = "resources/rwth.csv"
   with open(CSV_FILE, "w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(["N", "Title", "PDF URL", "Erschienen", "Nummer", "Ordnung", "Auslaufen","Version"])
@@ -109,12 +109,84 @@ def download_pdfs(documents):
   print("All PDFs downloaded successfully!")
   driver.quit()
 
-def main():
-  documents = scrape_documents()
-  with open("resources/rwth_pdfs.csv", "r") as file:
-    reader = csv.reader(file)
-    documents = list(reader)
-  download_pdfs(documents)
+from openai import OpenAI
+import json
+from pydantic import BaseModel
+from typing import List, Optional
+
+class MetadataSchema(BaseModel):
+      degree: Optional[str]
+      study_program: Optional[str]
+      keywords: List[str]  
+
+def extract_metadata_llm(title, api_key):
+    os.environ["OPENAI_API_KEY"]=api_key
+    client = OpenAI()
+    prompt = f"""
+You are an expert metadata extraction assistant. Given the following academic document title, extract the metadata as follows:
+- **degree:** (e.g., Bachelor, Master, "Bachelor Lehramt", "Master Lehramt", Staatsexamen Medizin / Zahnmedizin; if not present, use null)
+- **study_program:** (e.g., Informatik, Mathematik, etc.; if not present, use null)
+- **keywords:** (a list of additional keywords found in the title which are useful for identifying the type of the document like "Prüfungsordnung", "Studienordnung", etc.)
+Return your answer strictly as an object with keys "degree", "study_program", and "keywords".
+for example for the title "Prüfungsordnung Unterrichtsfach Mathematik, Bachelor, Lehramt an Berufskollegs, (10/2021)" the expected output would be:
+ degree='Bachelor Lehramt' study_program='Mathematik' keywords=['Prüfungsordnung', 'Lehramt an Berufskollegs']
+Document Title: "{title}"
+"""
+    try:
+        response = client.beta.chat.completions.parse(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are an expert metadata extraction assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0,
+            response_format= MetadataSchema
+
+        )
+        
+        result = response.choices[0].message.parsed
+        metadata = result
+        return metadata
+    except Exception as e:
+        print("Error extracting metadata:", e)
+        return None
+
+def add_metadata_to_csv(input_csv, output_csv, api_key):
+  with open(input_csv, "r", newline="", encoding="utf-8") as infile:
+        reader = csv.reader(infile)
+        rows = list(reader)
+  header = rows[0] + ["Degree", "Study Program", "Keywords"]
+  new_rows = [header]
+  for row in rows[1:3]:
+      title = row[1]
+      print(f"Processing title: {title}")
+      metadata = extract_metadata_llm(title, api_key)
+      if metadata:
+          try:
+              meta = MetadataSchema.model_dump(metadata)
+          except Exception as e:
+              print(f"Error parsing metadata JSON for title '{title}': {e}")
+              meta = {}
+      else:
+          meta = {}
+      degree = meta.get("degree")
+      study_program = meta.get("study_program")
+      keywords = meta.get("keywords")
+      if isinstance(keywords, list):
+        keywords = "; ".join(keywords)
+      new_row = row + [degree, study_program, keywords]
+      new_rows.append(new_row)
+  with open(output_csv, "w", newline="", encoding="utf-8") as outfile:
+        writer = csv.writer(outfile)
+        writer.writerows(new_rows)
 
 if __name__ == "__main__":
-  main()
+  input_csv = "resources/rwth.csv"
+  output_csv = "resources/rwth_with_metadata.csv"
+  documents = scrape_documents()
+  download_pdfs(documents)
+  api_key = os.environ.get("OPENAI_API_KEY")
+  add_metadata_to_csv(input_csv, output_csv, api_key)
+
+
+
