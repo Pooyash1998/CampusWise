@@ -12,7 +12,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 download_dir = "resources/docs/rwth_pdfs"
 def setup_driver():
   options = Options()
-  #options.add_argument("--headless")
+  options.add_argument("--headless")
   options.add_argument("--no-sandbox")
   options.add_argument("--disable-dev-shm-usage") 
   os.makedirs(download_dir, exist_ok=True)
@@ -116,7 +116,7 @@ def fetch_major(major_list, output_csv):
       driver.implicitly_wait(30)
       driver.execute_script("window.scrollBy(0, 900);")
       driver.find_element(By.XPATH,'//*[@id="filterdate"]/div[4]/div/fieldset/span[6]').click()
-      time.sleep(5)
+  
       filter_boxes = driver.find_elements(By.CSS_SELECTOR, "div.filter-box")
       for box in filter_boxes:
         heading = box.find_element(By.TAG_NAME, "h3")
@@ -131,7 +131,8 @@ def fetch_major(major_list, output_csv):
               input_element = driver.find_element(By.ID, input_id)
               driver.execute_script("arguments[0].click();", input_element)
               print(f"Clicked on: {major}")
-              driver.implicitly_wait(30)
+              time.sleep(20)
+              driver.implicitly_wait(20)
               # now check the titles
               li_elements = driver.find_elements(By.XPATH, '//*[@id="main"]/div[4]/ul/li')
               for li in li_elements[1:] :
