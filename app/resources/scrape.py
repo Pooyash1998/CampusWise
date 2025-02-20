@@ -149,7 +149,7 @@ def fetch_major(major_list, output_csv):
           break
   driver.quit()
 
-def fetch_type(major_list, output_csv):
+def fetch_type(output_csv):
   driver = setup_driver()
   BASE_URL = "https://www.rwth-aachen.de/cms/root/Die-RWTH/Aktuell/~xhf/Amtliche-Bekanntmachungen/?page=1&showall=1"
   driver.get(BASE_URL)
@@ -164,29 +164,27 @@ def fetch_type(major_list, output_csv):
   except Exception as e:
     driver.execute_script("window.scrollBy(0, 500);")
     print("No cookie banner found")
-  
-  df = pd.read_csv(major_list, header=0)
-  majors = df['Studienfach'].tolist()
-  for major in majors:
+    
+  for deg_type in ["Bachelor","Master","Lehramt","Staatsexamen Medizin / Zahnmedizin"]:
       driver.get(BASE_URL)
       driver.implicitly_wait(30)
       driver.execute_script("window.scrollBy(0, 900);")
-      driver.find_element(By.XPATH,'//*[@id="filterdate"]/div[4]/div/fieldset/span[6]').click()
+      driver.find_element(By.XPATH,'//*[@id="filterdate"]/div[5]/div/fieldset/span[6]').click()
   
       filter_boxes = driver.find_elements(By.CSS_SELECTOR, "div.filter-box")
       for box in filter_boxes:
         heading = box.find_element(By.TAG_NAME, "h3")
-        if heading.text.strip() == "Studienfach":
+        if heading.text.strip() == "Abschluss":
           # Locate all filter tags
           form_rows = box.find_elements(By.CSS_SELECTOR, "span.form-row")
           for row in form_rows:
             label_element = row.find_element(By.TAG_NAME, "label")
-            if label_element.text.strip() == major:
+            if label_element.text.strip() == deg_type:
               input_id = label_element.get_attribute("for")
               print(input_id)
               input_element = driver.find_element(By.ID, input_id)
               driver.execute_script("arguments[0].click();", input_element)
-              print(f"Clicked on: {major}")
+              print(f"Clicked on: {deg_type}")
               time.sleep(20)
               driver.implicitly_wait(20)
               # now check the titles
@@ -197,10 +195,10 @@ def fetch_type(major_list, output_csv):
                 # Find matching row by title
                 matching_row = df[df['Title'] == title]
                 if not matching_row.empty:
-                  df['Studiengang'] = df['Studiengang'].astype(str)
-                  df.loc[df['Title'] == title, 'Studiengang'] = major
+                  df['AbschlussArt'] = df['AbschlussArt'].astype(str)
+                  df.loc[df['Title'] == title, 'AbschlussArt'] = deg_type
                   df.to_csv(output_csv, index=False)
-                  print(f"Updated Studiengang to {major} for title: {title}")
+                  print(f"Updated Abschlussart to {deg_type} for title: {title}")
               break
           break
   driver.quit()
@@ -225,9 +223,10 @@ def download_pdfs(documents):
 if __name__ == "__main__":
   major_list_csv = "resources/major_list.csv"
   output_csv = "resources/rwth.csv"
-  documents = scrape_documents()
+  #documents = scrape_documents()
   #download_pdfs(documents)
-  fetch_major(major_list_csv,output_csv)
+  #fetch_major(major_list_csv,output_csv)
+  fetch_type(output_csv)
 
 
 
