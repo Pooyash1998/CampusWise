@@ -1,16 +1,19 @@
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.schema import Document
+from langchain_unstructured import UnstructuredLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
+##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
+#__import__('pysqlite3')
+#import sys
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#####
+import pandas as pd
 from langchain_chroma import Chroma
 import os
 import streamlit as st
 
-CHROMA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "docs/chroma/"))
+CHROMA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "resources/chroma")
 if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",
@@ -18,9 +21,41 @@ embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-Mi
                                           show_progress=True, encode_kwargs={"batch_size":16})
 
 def load_and_split():
-  # Load documents
-  loader = PyPDFDirectoryLoader("docs")
-  documents = loader.load()
+  #load metadata 
+  metadata_df = pd.read_csv("resources/rwth.csv")
+  # using "N" as the key
+  metadata_dict = {
+    row["N"]: {
+        "Title" : row["Title"],
+        "erschienen": row["Erschienen"],
+        "nummer": row["Nummer"],
+        "ordnung": row["Ordnung"],
+        "version": row["Version"],
+        "studiengang": row["Studiengang"],
+        "abschlussart": row["AbschlussArt"]
+    }
+    for _, row in metadata_df.iterrows()
+  }
+  pdf_dir = "resources/docs/rwth_pdfs"
+  documents = []
+  for file in os.listdir(pdf_dir):
+    if file.endswith(".pdf"):
+      file_number = int(file.split("_")[0])
+      loader = UnstructuredLoader(
+              file_path=os.path.join(pdf_dir, file),
+              strategy="hi_res",
+              partition_via_api=False,
+              show_progress=True,
+           )
+      doc_elements = []
+      for doc in loader.lazy_load():
+        doc_metadata = metadata_dict.get(file_number)
+        langchain_doc = Document(
+            page_content=doc.page_content,
+            metadata={**doc.metadata, **doc_metadata}
+        )
+        doc_elements.append(langchain_doc)
+      documents.extend(doc_elements)
   
   text_splitter = RecursiveCharacterTextSplitter(
       chunk_size=2000,
@@ -28,8 +63,8 @@ def load_and_split():
       length_function=len,
       add_start_index=True,
   )
-  chunks = text_splitter.split_documents(documents)
-  return chunks
+  #chunks = text_splitter.split_documents(documents)
+  #return chunks
 
 def save_to_chroma(chunks):
   vectorstore = Chroma.from_documents(
@@ -47,3 +82,7 @@ def get_vectorstore():
     else:
         chunks = load_and_split()
         return save_to_chroma(chunks)
+
+
+if __name__ == "__main__":
+  load_and_split()

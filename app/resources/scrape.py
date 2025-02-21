@@ -78,7 +78,7 @@ def scrape_documents():
           if '/' in year_match:
               version = year_match.split('/')[-1]
       
-      documents.append([idx, title, pdf_url, erschienen, nummer, ordnung, auslaufen, version, '', ''])
+      documents.append([idx, title, pdf_url, erschienen, nummer, ordnung, auslaufen, version, "", ""])
     except Exception as e:
       print(f"Error processing entry {idx}: {e}")
 

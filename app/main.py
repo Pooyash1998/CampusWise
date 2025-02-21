@@ -13,7 +13,7 @@ def main():
     if pin == st.secrets["MASTER_PASS"]:
       st.session_state.logged_in = True
       os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"]
-      st.rerun()#
+      st.rerun()
     elif pin:
       st.error("Incorrect PIN")
   else:
