@@ -1,4 +1,3 @@
-from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
 from langchain_unstructured import UnstructuredLoader
@@ -16,8 +15,8 @@ import streamlit as st
 CHROMA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "resources/chroma")
 if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",
-                                          model_kwargs={"device": "cpu"}, 
+embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-m3",
+                                          #model_kwargs={"device": "cpu"}, 
                                           show_progress=True, encode_kwargs={"batch_size":16})
 
 def load_and_split():
@@ -56,15 +55,15 @@ def load_and_split():
         )
         doc_elements.append(langchain_doc)
       documents.extend(doc_elements)
-  
+      print(f"{len(documents)} were loaded")
   text_splitter = RecursiveCharacterTextSplitter(
       chunk_size=2000,
       chunk_overlap=200,
       length_function=len,
       add_start_index=True,
   )
-  #chunks = text_splitter.split_documents(documents)
-  #return chunks
+  chunks = text_splitter.split_documents(documents)
+  return chunks
 
 def save_to_chroma(chunks):
   vectorstore = Chroma.from_documents(
@@ -76,8 +75,8 @@ def save_to_chroma(chunks):
 
 def get_vectorstore():
     if os.path.exists(os.path.join(CHROMA_PATH, 'chroma.sqlite3')):
-        print("Chroma DB with all-MiniLM-L6-v2 already Exists")
-        st.markdown("Chroma DB with all-MiniLM-L6-v2 already Exists")
+        print("Chroma DB already Exists")
+        st.markdown("Chroma DB already Exists")
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
         chunks = load_and_split()
@@ -85,4 +84,4 @@ def get_vectorstore():
 
 
 if __name__ == "__main__":
-  load_and_split()
+  get_vectorstore()
