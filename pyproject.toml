@@ -1,0 +1,23 @@
+[project]
+name = "campuswise"
+version = "0.1.0"
+description = "KI studienberater"
+authors = [
+    {name = "Pouya Esfahani"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "streamlit (>=1.42.2,<2.0.0)",
+    "langchain-community (>=0.3.18,<0.4.0)",
+    "langchain-ollama (>=0.2.3,<0.3.0)",
+    "langchain-huggingface (>=0.1.2,<0.2.0)",
+    "langchain-unstructured (>=0.1.6,<0.2.0)",
+    "langchain-chroma (>=0.2.2,<0.3.0)",
+    "unstructured[pdf] (>=0.16.23,<0.17.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
