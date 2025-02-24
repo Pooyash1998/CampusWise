@@ -37,7 +37,8 @@ def load_and_split():
   }
   pdf_dir = "resources/docs/rwth_pdfs"
   documents = []
-  for file in os.listdir(pdf_dir):
+  for file in sorted(os.listdir(pdf_dir)):
+    doc_counter = 0
     if file.endswith(".pdf"):
       file_number = int(file.split("_")[0])
       loader = UnstructuredLoader(
@@ -55,7 +56,9 @@ def load_and_split():
         )
         doc_elements.append(langchain_doc)
       documents.extend(doc_elements)
-      print(f"{len(documents)} were loaded")
+      doc_counter += 1
+      print(f"Document {file_number} was loaded. {doc_counter}/516 files")
+  print(f"{doc_counter} Documents were loaded")
   text_splitter = RecursiveCharacterTextSplitter(
       chunk_size=2000,
       chunk_overlap=200,

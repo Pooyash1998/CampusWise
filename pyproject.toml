@@ -5,7 +5,6 @@ description = "KI studienberater"
 authors = [
     {name = "Pouya Esfahani"}
 ]
-readme = "README.md"
 requires-python = ">=3.11,<4.0"
 dependencies = [
     "streamlit (>=1.42.2,<2.0.0)",
