@@ -1,6 +1,6 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
-from langchain_unstructured import UnstructuredLoader
+from langchain_unstructured import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 ##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
 #__import__('pysqlite3')
@@ -37,16 +37,13 @@ def load_and_split():
   }
   pdf_dir = "resources/docs/rwth_pdfs"
   documents = []
+  doc_counter = 0
   for file in sorted(os.listdir(pdf_dir)):
-    doc_counter = 0
     if file.endswith(".pdf"):
       file_number = int(file.split("_")[0])
-      loader = UnstructuredLoader(
+      loader = PyPDFLoader(
               file_path=os.path.join(pdf_dir, file),
-              strategy="hi_res",
-              partition_via_api=False,
-              show_progress=True,
-           )
+      )
       doc_elements = []
       for doc in loader.lazy_load():
         doc_metadata = metadata_dict.get(file_number)

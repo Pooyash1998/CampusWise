@@ -13,7 +13,9 @@ dependencies = [
     "langchain-huggingface (>=0.1.2,<0.2.0)",
     "langchain-unstructured (>=0.1.6,<0.2.0)",
     "langchain-chroma (>=0.2.2,<0.3.0)",
-    "unstructured[pdf] (>=0.16.23,<0.17.0)"
+    "unstructured[pdf] (>=0.16.23,<0.17.0)",
+    "debugpy (>=1.8.12,<2.0.0)",
+    "ipykernel (>=6.29.5,<7.0.0)"
 ]
 
 
