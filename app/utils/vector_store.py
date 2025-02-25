@@ -1,6 +1,6 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
-from langchain_unstructured import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 ##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
 #__import__('pysqlite3')
@@ -17,7 +17,7 @@ if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
 embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-m3",
                                           #model_kwargs={"device": "cpu"}, 
-                                          show_progress=True, encode_kwargs={"batch_size":16})
+                                          show_progress=True, encode_kwargs={"batch_size":32})
 
 def load_and_split():
   #load metadata 
@@ -54,7 +54,7 @@ def load_and_split():
         doc_elements.append(langchain_doc)
       documents.extend(doc_elements)
       doc_counter += 1
-      print(f"Document {file_number} was loaded. {doc_counter}/516 files")
+      print(f"Document {file_number} was loaded. {doc_counter}/{len(os.listdir(pdf_dir))} files")
   print(f"{doc_counter} Documents were loaded")
   text_splitter = RecursiveCharacterTextSplitter(
       chunk_size=2000,
