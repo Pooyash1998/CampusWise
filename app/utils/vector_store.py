@@ -76,12 +76,12 @@ def save_to_chroma(chunks):
 def get_vectorstore():
     if os.path.exists(os.path.join(CHROMA_PATH, 'chroma.sqlite3')):
         print("Chroma DB already Exists")
-        st.markdown("Chroma DB already Exists")
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
         chunks = load_and_split()
         return save_to_chroma(chunks)
 
-
+"""
 if __name__ == "__main__":
   get_vectorstore()
+"""

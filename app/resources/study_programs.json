@@ -1,13 +1,811 @@
 {
   "study_programs": {
-      "Informatik": {
-      "Bachelor": ["2018", "2022"],
-      "Master": ["2020", "2023"],
-      "Promotion": ["2021"]
+    "Zahnmedizin": {
+      "Staatsexamen Medizin / Zahnmedizin": [
+        "2013"
+      ]
+    },
+    "Mathematik": {
+      "Lehramt": [
+        "2019",
+        "2017",
+        "2021"
+      ],
+      "Master": [
+        "2024",
+        "2018"
+      ],
+      "Bachelor": [
+        "2021",
+        "2016"
+      ]
+    },
+    "Battery Science and Technology in Engineering": {
+      "Master": []
+    },
+    "Computational Social Systems": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Georessourcenmanagement": {
+      "Bachelor": [
+        "2019"
+      ],
+      "Master": [
+        "2019"
+      ]
+    },
+    "Umweltingenieurwissenschaften": {
+      "Master": [
+        "2019"
+      ],
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Wirtschaftsingenieurwesen Bauwesen": {
+      "Master": [
+        "2015 s"
+      ],
+      "Bachelor": []
+    },
+    "Bauingenieurwesen": {
+      "Bachelor": [
+        "2020"
+      ],
+      "Master": [
+        "2021"
+      ]
+    },
+    "Biomedical Engineering": {
+      "Master": [
+        "2025",
+        "2015"
+      ]
+    },
+    "Sustainable Management - Water and Energy": {
+      "Master": [
+        "2017"
+      ]
+    },
+    "Verkehrsingenieurwesen und Mobilität": {
+      "Master": [
+        "2019"
+      ],
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Wirtschaftsingenieurwesen Werkstoff- u. Prozesstechnik": {
+      "Bachelor": [
+        "2013"
+      ],
+      "Master": [
+        "2015"
+      ]
+    },
+    "Wirtschaftsingenieurwesen Elektr. Energietechnik": {
+      "Bachelor": [],
+      "Master": [
+        "2015"
+      ]
+    },
+    "Biologie": {
+      "Lehramt": [
+        "2024",
+        "2025",
+        "2017"
+      ],
+      "Bachelor": [
+        "2024",
+        "2010 s"
+      ],
+      "Master": [
+        "2016"
+      ]
+    },
+    "Wirtschaftsingenieurwesen Maschinenbau": {
+      "Master": [
+        "2020"
+      ],
+      "Bachelor": [
+        "2020",
+        "2011 s"
+      ]
+    },
+    "Chemie": {
+      "Lehramt": [
+        "2017",
+        "2011 s"
+      ],
+      "Master": [
+        "2022",
+        "2009 s"
+      ],
+      "Bachelor": [
+        "2021",
+        "2010 s"
+      ]
+    },
+    "Psychologie": {
+      "Master": [
+        "2022",
+        "2019"
+      ],
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Soziologie mit Schwerpunkt Technikforschung": {
+      "Bachelor": [
+        "2024",
+        "2020"
+      ]
+    },
+    "Data Science": {
+      "Master": [
+        "2018"
+      ]
+    },
+    "Human-Centered Intelligent Systems": {
+      "Master": [
+        "2025"
+      ]
+    },
+    "Wirtschaftswissenschaften Berufskolleg": {
+      "Lehramt": [
+        "2011 s",
+        "2017"
+      ]
+    },
+    "Software Systems Engineering": {
+      "Master": [
+        "2025",
+        "2011"
+      ]
+    },
+    "Informatik": {
+      "Master": [
+        "2023",
+        "2010 s"
+      ],
+      "Bachelor": [
+        "2018",
+        "2022"
+      ],
+      "Lehramt": [
+        "2017",
+        "2023"
+      ]
+    },
+    "Fahrzeugtechnik und Transport": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Produktentwicklung": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Produktionstechnik": {
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Allgemeiner Maschinenbau": {
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Energietechnik": {
+      "Master": [
+        "2020",
+        "2002"
+      ]
+    },
+    "Kunststoff- und Textiltechnik": {
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Luft- und Raumfahrttechnik": {
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Verfahrenstechnik": {
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Automotive Engineering": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Media Informatics": {
+      "Master": [
+        "2019"
+      ]
     },
     "Betriebswirtschaftslehre": {
-      "Bachelor": ["2019", "2021"],
-      "Master": ["2020"]
+      "Master": [
+        "2021",
+        "2013"
+      ],
+      "Bachelor": [
+        "2021"
+      ]
+    },
+    "Wirtschaftswissenschaften": {
+      "Master": [
+        "2014 s"
+      ]
+    },
+    "Maschinenbau": {
+      "Bachelor": [
+        "2011 s"
+      ]
+    },
+    "Management and Engineering in Technology, Innovation, Marketing and Entrepreneurship (privatrechtlich)": {
+      "Master": [
+        "2025",
+        "2017"
+      ]
+    },
+    "Angew. Geowissenschaften": {
+      "Master": [
+        "2019"
+      ],
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Management Science and Mathematics": {
+      "Master": [
+        "2024"
+      ]
+    },
+    "Applied Health Informatics and Digital Medicine (privatrechtlich)": {
+      "Master": [
+        "2024"
+      ]
+    },
+    "Applied Geophysics": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "Data Analytics and Decision Science (privatrechtlich)": {
+      "Master": [
+        "2025",
+        "2019"
+      ]
+    },
+    "Executive MBA": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Biowissenschaften": {
+      "Master": [
+        "2025"
+      ]
+    },
+    "Nachhaltige Biotechnologie": {
+      "Master": [
+        "2025"
+      ]
+    },
+    "Transforming City Regions": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "Stadtplanung": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "Molekulare und angewandte Biotechnologie": {
+      "Bachelor": [
+        "2024",
+        "2010 s"
+      ],
+      "Master": [
+        "2017"
+      ]
+    },
+    "Architektur": {
+      "Master": [
+        "2019"
+      ],
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Medizin (Modellstudiengang)": {
+      "Bachelor": [
+        "2012 s"
+      ]
+    },
+    "Lehr- und Forschungslogopädie": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "Wirtschaftsmathematik": {
+      "Bachelor": [
+        "2022"
+      ]
+    },
+    "Elektrotechnik u. Informationstechnik": {
+      "Master": [
+        "2024"
+      ],
+      "Bachelor": [
+        "2021"
+      ]
+    },
+    "Computer Engineering": {
+      "Master": [
+        "2024"
+      ],
+      "Bachelor": [
+        "2022",
+        "2021"
+      ]
+    },
+    "Nachhaltige Werkstofftechnik": {
+      "Master": [
+        "2025"
+      ],
+      "Bachelor": [
+        "2024"
+      ]
+    },
+    "Rohstoffingenieurwesen": {
+      "Master": [
+        "2018"
+      ]
+    },
+    "Nachhaltige Energieversorgung": {
+      "Master": [
+        "2018"
+      ]
+    },
+    "Nachhaltige Rohstoff- und Energieversorgung": {
+      "Master": [
+        "2024"
+      ],
+      "Bachelor": [
+        "2024",
+        "2018 s"
+      ]
+    },
+    "Politik": {
+      "Lehramt": [
+        "2013 s",
+        "2017"
+      ]
+    },
+    "Wirtschaftswissenschaften/Politik Berufskolleg": {
+      "Lehramt": [
+        "2017",
+        "2020"
+      ]
+    },
+    "Gesellschaftswissenschaften": {
+      "Bachelor": [
+        "2019"
+      ],
+      "Master": [
+        "2022 s"
+      ]
+    },
+    "Soziologie": {
+      "Master": [
+        "2024",
+        "2021"
+      ]
+    },
+    "Logopädie (Dualer Studiengang)": {
+      "Bachelor": [
+        "2024"
+      ]
+    },
+    "Werkstoffingenieurwesen": {
+      "Master": [
+        "2010 s"
+      ],
+      "Bachelor": [
+        "2010 s"
+      ]
+    },
+    "Smart Production Engineering": {
+      "Master": [
+        "2020",
+        "2022"
+      ]
+    },
+    "Simulation Sciences": {
+      "Master": [
+        "2010"
+      ]
+    },
+    "Textile Engineering (privatrechtlich)": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "Robotic Systems Engineering": {
+      "Master": [
+        "2021",
+        "2019"
+      ]
+    },
+    "Management and Engineering in Production Systems (privatrechtlich)": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Elektrotechnik mit Orientierungssemester": {
+      "Bachelor": [
+        "2021",
+        "2018"
+      ]
+    },
+    "Elektrotechnik, Informationstechnik und Technische Informatik": {
+      "Bachelor": [
+        "2018",
+        "2017"
+      ]
+    },
+    "Materialwissenschaften": {
+      "Bachelor": [
+        "2023",
+        "2017"
+      ],
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Ökotoxikologie": {
+      "Master": [
+        "2016"
+      ]
+    },
+    "Bautechnik": {
+      "Lehramt": [
+        "2024",
+        "2022",
+        "2020",
+        "2017"
+      ]
+    },
+    "Elektrotechn./Inform.Techn./Techn.Informatik": {
+      "Master": [
+        "2018"
+      ]
+    },
+    "Resilient Civil Engineering (privatrechtlich)": {
+      "Master": [
+        "2024"
+      ]
+    },
+    "Public Administration in European Studies (privatrechtlich)": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Physik": {
+      "Master": [
+        "2013 s"
+      ],
+      "Bachelor": [
+        "2023",
+        "2012 s"
+      ],
+      "Lehramt": [
+        "2023",
+        "2017"
+      ]
+    },
+    "Technik": {
+      "Lehramt": [
+        "2018"
+      ]
+    },
+    "Sustainability Management": {
+      "Master": [
+        "2024"
+      ]
+    },
+    "Medical Data Science (privatrechtlich)": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Automatisierungstechnik": {
+      "Master": [
+        "2013 s",
+        "2023"
+      ]
+    },
+    "Physik Plus": {
+      "Bachelor": [
+        "2023",
+        "2020"
+      ]
+    },
+    "Mensch-Technik-Interaktion und -Kommunikation": {
+      "Master": [
+        "2023"
+      ],
+      "Bachelor": [
+        "2023"
+      ]
+    },
+    "Comp. Aided Conception/Production in Mech. Engin. (privatrechtlich)": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Management and Engineering in Computer Aided Mechanical Engineering (privatrechtlich)": {
+      "Master": [
+        "2020",
+        "2016"
+      ]
+    },
+    "Psychologie polyvalent": {
+      "Bachelor": [
+        "2021"
+      ]
+    },
+    "Elektrotechnik Berufskolleg": {
+      "Lehramt": [
+        "2017"
+      ]
+    },
+    "Engineering Geohazards": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Bildungswissenschaftliches Studium": {
+      "Lehramt": [
+        "2017",
+        "2011"
+      ]
+    },
+    "Maschinenbau (Kombin.Studiengang)": {
+      "Master": [
+        "2017",
+        "2020",
+        "2021"
+      ],
+      "Bachelor": [
+        "2020",
+        "2011 s"
+      ]
+    },
+    "Materials Engineering (International Profile)": {
+      "Master": [
+        "2022"
+      ]
+    },
+    "Technik-Kommunikation": {
+      "Master": [
+        "2013 s"
+      ],
+      "Bachelor": [
+        "2013 s"
+      ]
+    },
+    "Lasers in Dentistry (privatrechtlich)": {
+      "Master": [
+        "2010 s"
+      ]
+    },
+    "Philosophie": {
+      "Bachelor": [
+        "2021"
+      ]
+    },
+    "Wirtschaftsgeographie": {
+      "Master": [
+        "2013 s"
+      ]
+    },
+    "Angew. Geographie": {
+      "Master": [
+        "2013 s"
+      ],
+      "Bachelor": [
+        "2013 s"
+      ]
+    },
+    "Sprach- u. Kommunikationswissenschaft": {
+      "Bachelor": [
+        "2022",
+        "2015 s"
+      ]
+    },
+    "Literatur- und Sprachwissenschaft": {
+      "Bachelor": [
+        "2017"
+      ],
+      "Master": [
+        "2015"
+      ]
+    },
+    "Full-Time MBA in Digitalization & Industrial Change (privatrechtlich)": {
+      "Master": [
+        "2023",
+        "2021"
+      ]
+    },
+    "Hebammenwissenschaft": {
+      "Bachelor": [
+        "2022"
+      ]
+    },
+    "Management and Engineering in Structural Engineering and Risk Management of Industrial Facilities (privatrechtlich)": {
+      "Master": [
+        "2018",
+        "2021"
+      ]
+    },
+    "Management and Engineering in Water (privatrechtlich)": {
+      "Master": [
+        "2018"
+      ]
+    },
+    "Metallurgical Engineering": {
+      "Master": [
+        "2010 s"
+      ]
+    },
+    "Governance von Technologie und Innovation": {
+      "Master": [
+        "2019"
+      ]
+    },
+    "BWL / Business Administration": {
+      "Bachelor": [
+        "2019"
+      ]
+    },
+    "Politikwissenschaft": {
+      "Master": [
+        "2022",
+        "2014 s"
+      ]
+    },
+    "Textiltechnik Berufskolleg": {
+      "Lehramt": [
+        "2022",
+        "2017"
+      ]
+    },
+    "Katholische Religionslehre": {
+      "Lehramt": [
+        "2017",
+        "2015 s"
+      ]
+    },
+    "Computational Engineering Science": {
+      "Bachelor": [
+        "2011 s"
+      ],
+      "Master": [
+        "2011 s"
+      ]
+    },
+    "Empirische Bildungsforschung": {
+      "Master": [
+        "2014"
+      ]
+    },
+    "Digitale Medienkommunikation": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Production Systems Engineering (privatrechtlich)": {
+      "Master": [
+        "2013"
+      ]
+    },
+    "English Studies": {
+      "Master": [
+        "2021"
+      ]
+    },
+    "Laboratory Animal Science (privatrechtlich)": {
+      "Master": [
+        "2014 s"
+      ]
+    },
+    "Periodontology (privatrechtlich)": {
+      "Master": []
+    },
+    "Maschinenbautechnik": {
+      "Lehramt": [
+        "2020"
+      ],
+      "Bachelor": [
+        "2011 s"
+      ]
+    },
+    "Deutsch": {
+      "Master": [
+        "2020"
+      ],
+      "Lehramt": [
+        "2020",
+        "2017"
+      ]
+    },
+    "Englisch": {
+      "Lehramt": [
+        "2020",
+        "2017"
+      ],
+      "Bachelor": [
+        "2017"
+      ]
+    },
+    "Technology Entrepreneurship (privatrechtlich)": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Theologie und Globale Entwicklung": {
+      "Master": [
+        "2020"
+      ]
+    },
+    "Geschichtswissenschaft": {
+      "Master": [
+        "2019",
+        "2017"
+      ]
+    },
+    "Geschichte": {
+      "Lehramt": [
+        "2017"
+      ]
+    },
+    "Physiotherapie": {
+      "Bachelor": [
+        "2011"
+      ]
+    },
+    "Redevelopment – Real Estate and Urban Management": {
+      "Master": [
+        "2013"
+      ]
+    },
+    "Wirtschaftswissenschaft": {
+      "Master": []
+    },
+    "Life Science Informatics": {
+      "Master": [
+        "2003"
+      ]
+    },
+    "Medizin (910)": {
+      "Staatsexamen Medizin / Zahnmedizin": [
+        "2003"
+      ]
+    },
+    "Communications Engineering": {
+      "Master": [
+        "2003"
+      ]
     }
   }
 }

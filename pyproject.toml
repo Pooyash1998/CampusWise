@@ -15,7 +15,10 @@ dependencies = [
     "langchain-chroma (>=0.2.2,<0.3.0)",
     "unstructured[pdf] (>=0.16.23,<0.17.0)",
     "debugpy (>=1.8.12,<2.0.0)",
-    "ipykernel (>=6.29.5,<7.0.0)"
+    "ipykernel (>=6.29.5,<7.0.0)",
+    "langchain-openai (>=0.3.7,<0.4.0)",
+    "torch (>=2.6.0,<3.0.0)",
+    "watchdog (>=6.0.0,<7.0.0)"
 ]
 
 
