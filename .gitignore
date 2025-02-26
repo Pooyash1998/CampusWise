@@ -29,4 +29,7 @@ desktop.ini
 .streamlit/
 secrets.toml
 
+# Conda environment file
+# REMOVING FROM GIT BECAUSE STREAMLIT CANT SEE POETRY
+environment.yml
 # misc
