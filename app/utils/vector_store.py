@@ -3,9 +3,9 @@ from langchain.schema import Document
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 ##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
-#__import__('pysqlite3')
-#import sys
-#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 #####
 import pandas as pd
 from langchain_chroma import Chroma
