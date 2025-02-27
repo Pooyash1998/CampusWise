@@ -84,8 +84,9 @@ def get_vectorstore():
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
         download_chromaDB()
-        chunks = load_and_split()
-        return save_to_chroma(chunks)
+        #chunks = load_and_split() not necessary for streamlit
+        #return save_to_chroma(chunks)
+        return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
 
 """
 if __name__ == "__main__":
