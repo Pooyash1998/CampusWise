@@ -9,12 +9,13 @@ torch.classes.__path__ = [os.path.join(torch.__path__[0], torch.classes.__file__
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 ##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
-#__import__('pysqlite3')
-#import sys
-#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 #####
 import pandas as pd
 from langchain_chroma import Chroma
+from utils.donwload_release import download_chromaDB
 
 CHROMA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "resources/chroma")
 if not os.path.exists(CHROMA_PATH):
@@ -82,6 +83,7 @@ def get_vectorstore():
         print("Chroma DB already Exists")
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
+        download_chromaDB()
         chunks = load_and_split()
         return save_to_chroma(chunks)
 
