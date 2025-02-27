@@ -1,7 +1,13 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
 from langchain_community.document_loaders import PyPDFLoader
+import torch
+import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+torch.classes.__path__ = [os.path.join(torch.__path__[0], torch.classes.__file__)] 
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 ##### Streamlit clouds sqlite3 is outdated, so we need to use pysqlite3
 #__import__('pysqlite3')
 #import sys
@@ -9,14 +15,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 #####
 import pandas as pd
 from langchain_chroma import Chroma
-import os
-import streamlit as st
 
 CHROMA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "resources/chroma")
 if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
 embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-m3",
-                                          #model_kwargs={"device": "cpu"}, 
+                                          model_kwargs={"device": "cpu"}, 
                                           show_progress=True, encode_kwargs={"batch_size":32})
 
 def load_and_split():

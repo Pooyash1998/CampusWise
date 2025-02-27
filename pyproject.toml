@@ -18,7 +18,8 @@ dependencies = [
     "ipykernel (>=6.29.5,<7.0.0)",
     "langchain-openai (>=0.3.7,<0.4.0)",
     "torch (>=2.6.0,<3.0.0)",
-    "watchdog (>=6.0.0,<7.0.0)"
+    "watchdog (>=6.0.0,<7.0.0)",
+    "sentence-transformers (>=3.4.1,<4.0.0)"
 ]
 
 
