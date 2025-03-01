@@ -20,9 +20,9 @@ from utils.donwload_release import download_chromaDB
 CHROMA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "resources/chroma")
 if not os.path.exists(CHROMA_PATH):
      os.makedirs(CHROMA_PATH)
-embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-m3",
-                                          model_kwargs={"device": "cpu"}, 
-                                          show_progress=True, encode_kwargs={"batch_size":32})
+embedding_model = HuggingFaceEmbeddings(model_name="jinaai/jina-embeddings-v2-base-de",
+                                          model_kwargs={"trust_remote_code":True,"device": "cpu"}, 
+                                          show_progress=True, encode_kwargs={"batch_size":16})
 
 def load_and_split():
   #load metadata 
@@ -84,11 +84,11 @@ def get_vectorstore():
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
     else:
         download_chromaDB()
-        #chunks = load_and_split() not necessary for streamlit
+        #chunks = load_and_split() #not necessary for streamlit
         #return save_to_chroma(chunks)
         return Chroma(persist_directory=CHROMA_PATH,embedding_function=embedding_model)
 
-"""
+#
 if __name__ == "__main__":
   get_vectorstore()
-"""
+#"""
